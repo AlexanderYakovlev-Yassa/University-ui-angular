@@ -1,0 +1,25 @@
+<div class="container border border-primary rounded m-0">
+  <div class="row">
+    <div class="col-4">
+      <h5 class="text-primary p-3 font-weight-bold font">{{ course.name }}</h5>
+    </div>
+    <div class="col-8 d-flex justify-content-end align-content-center flex-wrap">
+      <button class="btn btn-outline-primary" (click)="showDetail()">Подробности</button>
+      <button class="btn btn-outline-primary" (click)="showEditing()">Редактировать</button>
+      <button class="btn btn-outline-danger">Удалить</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="isDetailExposed">
+    <div class="col-12">
+      <app-course-detail [course]="course"></app-course-detail>
+      <div class="container  d-flex justify-content-end align-content-center flex-wrap mb-2">
+        <button class="btn btn-outline-primary" (click)="hideDetail()">Скрыть</button>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="isEditExposed">
+    <div class="col-12">
+      <app-course-edit [course]="course" (courseUpdated)="courseUpdateHandler($event)"></app-course-edit>
+    </div>
+  </div>
+</div>
