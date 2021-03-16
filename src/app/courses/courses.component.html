@@ -1,0 +1,29 @@
+
+<!-- All courses table -->
+<div *ngIf="isLoaded">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h4 class="text-primary">Все курсы</h4>
+      </div>
+      <div class="col-6 d-flex justify-content-end align-content-center flex-wrap">
+        <button class="btn btn-outline-primary" (click)="createCourse()">Создать новый</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+
+        <ul class="list-group">
+          <li class="list-group-item border-0 p-1" *ngFor="let course of courses; let i = index">
+            <app-course-card [course]="course"></app-course-card>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text text-danger" *ngIf="!isLoaded">
+  <p>Data is loading ...</p>
+</div>
+<hr/>
