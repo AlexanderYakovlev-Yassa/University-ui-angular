@@ -6,19 +6,38 @@
       <div class="col-6">
         <h4 class="text-primary">Все курсы</h4>
       </div>
-      <div class="col-6 d-flex justify-content-end align-content-center flex-wrap">
-        <button class="btn btn-outline-primary" (click)="createCourse()">Создать новый</button>
+      <div class="col-6">
+        <h4 class="text-primary">Выбранный курс</h4>
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-6">
 
-        <ul class="list-group">
-          <li class="list-group-item border-0 p-1" *ngFor="let course of courses; let i = index">
-            <app-course-card [course]="course"></app-course-card>
-          </li>
-        </ul>
+        <table class="table table-hover table-striped table-bordered table-sm my-custom-scrollbar">
+          <thead>
+            <tr>
+              <td class="font-italic text-primary">Наименование курса</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let course of courses; let i = index" role="button">
+              <td class="font-weight-bold text-primary" (click)="selectCourse(course)">{{course.name}}</td>
+            </tr>
+          </tbody>
+        </table>
 
+      </div>
+      <div class="col-6 border-primary d-flex flex-column">
+          <input type="hidden" [formControl]="id"/>
+          <label for="CourseName" class="text-primary font-italic">Наименование курса</label>
+          <input [formControl]="name" class="text-primary border-primary mb-2" id="CourseName"/>
+          <label for="CourseDescription" class="text-primary font-italic">Описание курса</label>
+          <textarea rows="3" [formControl]="description" class="text-primary border-primary mb-2" id="CourseDescription"></textarea>
+          <div class="d-flex flex-row justify-content-end">
+            <button class="btn btn-outline-primary" (click)="createCourse()">Создать</button>
+            <button class="btn btn-outline-primary" (click)="updateCourse()">Изменить</button>
+            <button class="btn btn-outline-danger" (click)="deleteCourse()">Удалить</button>
+          </div>
       </div>
     </div>
   </div>
